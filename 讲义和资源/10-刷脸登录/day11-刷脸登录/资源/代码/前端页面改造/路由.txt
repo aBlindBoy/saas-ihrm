@@ -1,0 +1,7 @@
+const whiteList = ['/login', '/reg', '/authredirect','/facelogin'] // 白名单 无需跳转
+
+  {
+    path: '/facelogin',
+    component: _import('dashboard/pages/facelogin'),
+    hidden: true
+  },

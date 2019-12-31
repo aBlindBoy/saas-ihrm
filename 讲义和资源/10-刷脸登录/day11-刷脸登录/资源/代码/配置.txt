@@ -1,0 +1,8 @@
+ai:
+  appId: 15191935
+  apiKey: cyWSHgas93Vtdmt42OwbW8pu
+  secretKey: yf1GusMvvLBdOnyubfLubNyod9iEDEZW
+  imageType: BASE64
+  groupId: itcast
+qr:
+  url: https://192.168.50.110:8080/#/facelogin
