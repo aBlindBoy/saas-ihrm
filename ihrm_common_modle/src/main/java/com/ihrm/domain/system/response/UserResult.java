@@ -1,26 +1,21 @@
-package com.ihrm.domain.system;
+package com.ihrm.domain.system.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ihrm.domain.system.Role;
+import com.ihrm.domain.system.User;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+import org.springframework.beans.BeanUtils;
 
-import javax.persistence.*;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-/**
- * 用户实体类
- */
-@Entity
-@Table(name = "bs_user")
 @Getter
 @Setter
-@ToString
-public class User implements Serializable {
-    private static final long serialVersionUID = 4297464181093070302L;
+public class UserResult implements Serializable {
+
     /**
      * ID
      */
@@ -94,14 +89,12 @@ public class User implements Serializable {
 
     private String departmentName;
 
-    /**
-     *  JsonIgnore
-     *     : 忽略json转化
-     */
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name="pe_user_role",joinColumns={@JoinColumn(name="user_id",referencedColumnName="id")},
-            inverseJoinColumns={@JoinColumn(name="role_id",referencedColumnName="id")}
-    )
-    private Set<Role> roles = new HashSet<Role>();//用户与角色   多对多
+    private List<String> roleIds = new ArrayList<>();
+
+    public UserResult(User user) {
+        BeanUtils.copyProperties(user,this);
+        for (Role role : user.getRoles()) {
+            this.roleIds.add(role.getId());
+        }
+    }
 }
