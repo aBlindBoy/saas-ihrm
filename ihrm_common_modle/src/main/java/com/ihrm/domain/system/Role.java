@@ -14,7 +14,6 @@ import java.util.Set;
 @Table(name = "pe_role")
 @Getter
 @Setter
-@ToString
 public class Role implements Serializable {
     private static final long serialVersionUID = 594829320797158219L;
     @Id
@@ -43,4 +42,15 @@ public class Role implements Serializable {
             joinColumns={@JoinColumn(name="role_id",referencedColumnName="id")},
             inverseJoinColumns={@JoinColumn(name="permission_id",referencedColumnName="id")})
     private Set<Permission> permissions = new HashSet<Permission>(0);//角色与模块  多对多
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", companyId='" + companyId + '\'' +
+                ", permissions=" + permissions +
+                '}';
+    }
 }

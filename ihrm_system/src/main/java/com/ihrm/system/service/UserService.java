@@ -68,10 +68,10 @@ public class UserService {
             public Predicate toPredicate( Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder ) {
                 List<Predicate> list = new ArrayList<> (  );
                 //动态添加查询条件
-                if (StringUtils.isEmpty ( map.get ( "companyId" ) )){
+                if (!StringUtils.isEmpty ( map.get ( "companyId" ) )){
                     list.add (criteriaBuilder.equal ( root.get ( "companyId" ).as ( String.class ),(String) map.get ( "companyId" ) ) );
                 }
-                if (StringUtils.isEmpty ( map.get ( "departmentId" ) )){
+                if (!StringUtils.isEmpty ( map.get ( "departmentId" ) )){
                     list.add (criteriaBuilder.equal ( root.get ( "departmentId" ).as ( String.class ),(String) map.get ( "departmentId" ) ) );
                 }
 
@@ -89,11 +89,7 @@ public class UserService {
                 return criteriaBuilder.and ( list.toArray ( new Predicate[list.size ()] ) );
             }
         };
-
-//        PageRequest pageRequest = new PageRequest ( page, size );
-//        Page<User> userPage = userDao.findAll ( spec, pageRequest );
         Page<User> pageUser = userDao.findAll(spec, new PageRequest(page-1, size));
-        // List<User> users = userDao.findAll (getSpec ( companyId ));
         return pageUser;
     }
 

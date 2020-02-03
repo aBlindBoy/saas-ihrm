@@ -18,7 +18,6 @@ import java.util.Set;
 @Table(name = "bs_user")
 @Getter
 @Setter
-@ToString
 public class User implements Serializable {
     private static final long serialVersionUID = 4297464181093070302L;
     /**
@@ -94,6 +93,17 @@ public class User implements Serializable {
 
     private String departmentName;
 
+
+    /**
+     * level
+     *      saasAdmin:SaaS管理员。拥有所有权限
+     *      coAdmin：企业管理。创建租户企业的时候添加
+     *      user:企业普通用户
+     */
+    private String level;
+
+
+
     /**
      *  JsonIgnore
      *     : 忽略json转化
@@ -104,4 +114,29 @@ public class User implements Serializable {
             inverseJoinColumns={@JoinColumn(name="role_id",referencedColumnName="id")}
     )
     private Set<Role> roles = new HashSet<Role>();//用户与角色   多对多
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enableState=" + enableState +
+                ", createTime=" + createTime +
+                ", companyId='" + companyId + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", departmentId='" + departmentId + '\'' +
+                ", timeOfEntry=" + timeOfEntry +
+                ", formOfEmployment=" + formOfEmployment +
+                ", workNumber='" + workNumber + '\'' +
+                ", formOfManagement='" + formOfManagement + '\'' +
+                ", workingCity='" + workingCity + '\'' +
+                ", correctionTime=" + correctionTime +
+                ", inServiceStatus=" + inServiceStatus +
+                ", departmentName='" + departmentName + '\'' +
+                ", level='" + level + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }

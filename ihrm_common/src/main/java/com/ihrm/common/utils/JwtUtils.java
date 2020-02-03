@@ -27,6 +27,7 @@ public class JwtUtils {
      * 设置认证token
      */
     public String createJwt( String id, String name, Map<String,String> map){
+
         //1.设置失效时间
         long now=System.currentTimeMillis ();
         long exp=now+ttl;
@@ -38,6 +39,7 @@ public class JwtUtils {
                 .signWith ( SignatureAlgorithm.HS256, key );
         //3.根据Map设置claims
         for (Map.Entry<String,String> s : map.entrySet ()) {
+            System.out.println ("key:"+s.getKey ()+",value:"+s.getValue ());
             jwtBuilder.claim ( s.getKey (), s.getValue () );
         }
 
@@ -51,8 +53,8 @@ public class JwtUtils {
      * 解析token
      */
     public Claims parserJwt(String token){
-        Claims body = Jwts.parser ().setSigningKey ( key ).parseClaimsJws ( token ).getBody ();
-        return body;
+        Claims claims = Jwts.parser ().setSigningKey ( key ).parseClaimsJws ( token ).getBody ();
+        return claims;
     }
 
 

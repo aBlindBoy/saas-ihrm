@@ -52,5 +52,16 @@ public class Permission implements Serializable {
         this.description = description;
     }
 
-
+    @Override
+    public String toString() {
+        return "Permission{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", code='" + code + '\'' +
+                ", description='" + description + '\'' +
+                ", pid='" + pid + '\'' +
+                ", enVisible='" + enVisible + '\'' +
+                '}';
+    }
 }

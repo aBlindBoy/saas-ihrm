@@ -193,8 +193,7 @@ public class PermissionService {
             }
         };
 
-        List<Permission> perms = permissionDao.findAll ( spec );
-        return perms;
+        return permissionDao.findAll(spec);
     }
 
 

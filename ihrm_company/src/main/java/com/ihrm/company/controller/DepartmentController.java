@@ -32,9 +32,6 @@ public class DepartmentController extends BaseController{
     @RequestMapping(value="/department",method = RequestMethod.POST)
     public Result save(@RequestBody Department department) {
         //1.设置保存的企业id
-        /**
-         * 企业id：目前使用固定值1，以后会解决
-         */
         department.setCompanyId(companyId);
         //2.调用service完成保存企业
         departmentService.add(department);
@@ -48,6 +45,7 @@ public class DepartmentController extends BaseController{
      */
     @RequestMapping(value="/department",method = RequestMethod.GET)
     public Result findAll() {
+        System.out.println (companyId);
         //1.指定企业id
         Company company = companyService.findById(companyId);
         //2.完成查询

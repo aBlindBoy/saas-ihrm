@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Result {
+public class Result extends Throwable {
 
     private boolean success;//是否成功
     private Integer code;// 返回码
